@@ -117,7 +117,7 @@ oc get inferenceservices.serving.kserve.io -n llm granite -o yaml > ./sampleMani
 
 - The `instanceServices` need:
   - A name change from `granite` to `granite-pvc`. The `runtime:` element *MUST* match the name of the `servingRuntime`
-- The storage needs to be changed
+- The storage needs to be changed. Note this path is hard coded with respect to what you upload and the pvc name
 
 Original storage
 ```yaml
@@ -137,6 +137,8 @@ New storage
       storageUri: pvc://vllm-model-cache/granite-7b-lab
   ...
 ```
+
+
 
 full file is [here](sampleManifests/new-granite-pvc-instanceServices.yaml)
 
