@@ -140,15 +140,19 @@ New storage
 
 
 
-full file is [here](sampleManifests/new-granite-pvc-instanceServices.yaml)
+The full manifest is [here](sampleManifests/new-granite-pvc-instanceServices.yaml)
 
-The PVC must be in the same namespace.
+The PVC specified *must* be in the same namespace
 
-This new model can be applied by:
+Once all of this is complete you can apply the manifests to your cluster: 
 
 ```shell
 oc apply -f ./sampleManifests/new-granite-pvc-servingRuntime.yaml
 oc apply -f ./sampleManifests/new-granite-pvc-instanceServices.yaml
 ```
 
-Inspecting `/var/lib/kubelet/pods` should show that pods do not use local `emptyDir` storage.
+#### Validation
+
+Logging into the node and using du to inspect `/var/lib/kubelet/pods` should show that pods do not use local `emptyDir` storage.
+
+
