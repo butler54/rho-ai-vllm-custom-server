@@ -1,0 +1,90 @@
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  annotations:
+    openshift.io/display-name: granite
+    serving.knative.openshift.io/enablePassthrough: "true"
+    sidecar.istio.io/inject: "true"
+    sidecar.istio.io/rewriteAppHTTPProbers: "true"
+  creationTimestamp: "2024-07-09T11:46:28Z"
+  finalizers:
+  - inferenceservice.finalizers
+  generation: 1
+  labels:
+    opendatahub.io/dashboard: "true"
+  name: granite
+  namespace: llm
+  resourceVersion: "2313548"
+  uid: 44640ca8-2c60-4d2b-915f-722e6668e192
+spec:
+  predictor:
+    maxReplicas: 1
+    minReplicas: 1
+    model:
+      modelFormat:
+        name: vLLM
+      name: ""
+      resources:
+        limits:
+          cpu: "10"
+          memory: 20Gi
+          nvidia.com/gpu: "1"
+        requests:
+          cpu: "6"
+          memory: 16Gi
+          nvidia.com/gpu: "1"
+      runtime: granite
+      storage:
+        key: aws-connection-minio
+        path: granite-7b-lab
+status:
+  address:
+    url: http://granite.llm.svc.cluster.local
+  components:
+    predictor:
+      address:
+        url: http://granite-predictor.llm.svc.cluster.local
+      latestCreatedRevision: granite-predictor-00001
+      latestReadyRevision: granite-predictor-00001
+      latestRolledoutRevision: granite-predictor-00001
+      traffic:
+      - latestRevision: true
+        percent: 100
+        revisionName: granite-predictor-00001
+      url: https://granite-predictor-llm.apps.rosa-xkbjq.suj0.p1.openshiftapps.com
+  conditions:
+  - lastTransitionTime: "2024-07-11T00:09:27Z"
+    status: "True"
+    type: IngressReady
+  - lastTransitionTime: "2024-07-11T00:09:27Z"
+    severity: Info
+    status: "True"
+    type: LatestDeploymentReady
+  - lastTransitionTime: "2024-07-11T00:09:27Z"
+    severity: Info
+    status: "True"
+    type: PredictorConfigurationReady
+  - lastTransitionTime: "2024-07-11T00:09:27Z"
+    status: "True"
+    type: PredictorReady
+  - lastTransitionTime: "2024-07-11T00:09:27Z"
+    severity: Info
+    status: "True"
+    type: PredictorRouteReady
+  - lastTransitionTime: "2024-07-11T00:09:27Z"
+    status: "True"
+    type: Ready
+  - lastTransitionTime: "2024-07-11T00:09:27Z"
+    severity: Info
+    status: "True"
+    type: RoutesReady
+  modelStatus:
+    copies:
+      failedCopies: 0
+      totalCopies: 1
+    states:
+      activeModelState: Loaded
+      targetModelState: Loaded
+    transitionStatus: UpToDate
+  observedGeneration: 1
+  url: https://granite-llm.apps.rosa-xkbjq.suj0.p1.openshiftapps.com

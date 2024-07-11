@@ -1,0 +1,16 @@
+allowVolumeExpansion: true
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+  creationTimestamp: "2024-07-09T09:02:32Z"
+  name: gp3-csi
+  resourceVersion: "6884"
+  uid: af84240d-c4f2-4a3a-99bc-c8030d5deb04
+parameters:
+  encrypted: "true"
+  type: gp3
+provisioner: ebs.csi.aws.com
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer

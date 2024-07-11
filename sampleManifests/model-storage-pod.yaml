@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: model-store-pod
+  namespace: llm
+spec:
+  volumes:
+  - name: model-store
+    persistentVolumeClaim:
+      claimName: vllm-model-cache
+  containers:
+  - name: model-store
+    image: registry.access.redhat.com/ubi9/toolbox
+    command: ["sleep"]
+    args: ["infinity"]
+    volumeMounts:
+    - mountPath: "/pv"
+      name: model-store
+    resources:
+      limits:
+        memory: "1Gi"
+        cpu: "1"
