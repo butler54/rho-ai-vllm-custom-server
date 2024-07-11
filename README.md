@@ -35,19 +35,6 @@ As an alternative this repository documents the process for using a PVC for stor
 
 # Process
 
-```mermaid
-flowchart TD
-
-startNode((Start))
-
-
-endNode(('Done'))
-
-startNode --> endNode
-
-```
-
-
 ## Once per cluster
 In order to serve a model from a PVC the storage class must have a `RECLAIMPOLICY` of `Retain`.
 
